@@ -8,6 +8,8 @@
 /**
  * Returns a Promise that is fulfilled with the input number if the number is non-negative (including zero),
  * and rejected if the number is negative.
+ * Возвращает Promise, который выполняется с номером ввода, если число неотрицательно (включая ноль),
+ * и отвергается, если число отрицательное.
  *
  * @param {number} number
  * @return {Promise<number>}
@@ -17,8 +19,14 @@
  * 0    => promise that will be fulfilled
  * 1    => promise that will be fulfilled
  */
-function getPromise(/* number */) {
-  throw new Error('Not implemented');
+function getPromise(number) {
+  return new Promise((resolve, reject) => {
+    if (number >= 0) {
+      resolve(number);
+    } else {
+      reject(number);
+    }
+  });
 }
 
 /**
