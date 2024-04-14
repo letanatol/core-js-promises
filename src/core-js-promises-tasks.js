@@ -33,6 +33,9 @@ function getPromise(number) {
  * Returns a promise that will always fulfilled and return a value of success or fail.
  * It returns a promise that is always fulfilled with a string value: 'success' if the original promise was fulfilled,
  * and 'fail' if the original promise was rejected
+ * Возвращает promise, которое всегда fulfilled и вернуть value успеха или неудачи.
+ * Он возвращает promise, которое всегда выполняется со значением строки: 'success' если первоначальное promise было выполнено,
+ * и 'fail' в случае отклонения первоначального обещания
  *
  * @param {Promise} source
  * @return {Promise<string>}
@@ -41,8 +44,16 @@ function getPromise(number) {
  * Promise.resolve('success') => promise that will be fulfilled with 'success' value
  * Promise.reject('fail')     => promise that will be fulfilled with 'fail' value
  */
-function getPromiseResult(/* source */) {
-  throw new Error('Not implemented');
+function getPromiseResult(source) {
+  return new Promise((resolve) => {
+    source
+      .then(() => {
+        resolve('success');
+      })
+      .catch(() => {
+        resolve('fail');
+      });
+  });
 }
 
 /**
